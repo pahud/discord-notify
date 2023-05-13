@@ -6,6 +6,7 @@ const project = new typescript.TypeScriptAppProject({
   deps: [
     '@actions/core',
     '@actions/github',
+    'axios',
   ],
   devDeps: ['@vercel/ncc'],
 
