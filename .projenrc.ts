@@ -1,4 +1,5 @@
 import { typescript } from 'projen';
+
 const project = new typescript.TypeScriptAppProject({
   defaultReleaseBranch: 'main',
   name: 'discord-notify',
@@ -9,6 +10,15 @@ const project = new typescript.TypeScriptAppProject({
     'axios',
   ],
   devDeps: ['@vercel/ncc'],
+  depsUpgradeOptions: {
+    workflowOptions: {
+      labels: ['auto-approve', 'auto-merge'],
+    },
+  },
+  autoApproveOptions: {
+    secret: 'GITHUB_TOKEN',
+    allowedUsernames: ['pahud', 'cdk-automation'],
+  },
 });
 
 const githubBuild = project.addTask('github:build', {
