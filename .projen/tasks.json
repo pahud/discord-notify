@@ -97,7 +97,7 @@
     },
     "github:build": {
       "name": "github:build",
-      "description": "Prebuild setup for Gitpod",
+      "description": "build up with ncc into dist",
       "steps": [
         {
           "exec": "npx ncc build lib/index.js --license licenses.txt"
