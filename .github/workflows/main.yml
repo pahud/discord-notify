@@ -13,7 +13,7 @@ jobs:
         id: discord-notify
         uses: pahud/discord-notify@main
         with:
-          webhook: ${{ secrets.webhook }}
+          webhook: ${{ secrets.WEBHOOK }}
           message: "The current time is ${{ steps.time.outputs.current_time }}"
       # # Use the output from the `hello` step
       # - name: Get the output time
