@@ -6,12 +6,15 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
+      - name: Get current time
+        id: time
+        run: echo "::set-output name=current_time::$(date +'%Y-%m-%d %H:%M:%S')"
       - name: Send to Discord
         id: discord-notify
         uses: pahud/discord-notify@main
         with:
-          webhook: 'http://discord.com/this-is-webhook'
-          message: 'this is message'
+          webhook: ${{ secrets.webhook }}
+          message: "The current time is ${{ steps.time.outputs.current_time }}"
       # # Use the output from the `hello` step
       # - name: Get the output time
       #   run: echo "The time was ${{ steps.hello.outputs.time }}"
