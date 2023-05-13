@@ -95,6 +95,15 @@
         }
       ]
     },
+    "github:build": {
+      "name": "github:build",
+      "description": "Prebuild setup for Gitpod",
+      "steps": [
+        {
+          "exec": "npx ncc build lib/index.js --license licenses.txt"
+        }
+      ]
+    },
     "install": {
       "name": "install",
       "description": "Install project dependencies and update lockfile (non-frozen)",
