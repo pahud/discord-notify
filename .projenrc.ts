@@ -1,4 +1,5 @@
 import { typescript } from 'projen';
+
 const project = new typescript.TypeScriptAppProject({
   defaultReleaseBranch: 'main',
   name: 'discord-notify',
@@ -9,15 +10,19 @@ const project = new typescript.TypeScriptAppProject({
     'axios',
   ],
   devDeps: ['@vercel/ncc'],
-
-  // deps: [],                /* Runtime dependencies of this module. */
-  // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
-  // devDeps: [],             /* Build dependencies for this module. */
-  // packageName: undefined,  /* The "name" in package.json. */
+  depsUpgradeOptions: {
+    workflowOptions: {
+      labels: ['auto-approve', 'auto-merge'],
+    },
+  },
+  autoApproveOptions: {
+    secret: 'GITHUB_TOKEN',
+    allowedUsernames: ['pahud', 'cdk-automation'],
+  },
 });
 
 const githubBuild = project.addTask('github:build', {
-  description: 'Prebuild setup for Gitpod',
+  description: 'build up with ncc into dist',
 });
 githubBuild.exec('npx ncc build lib/index.js --license licenses.txt');
 
