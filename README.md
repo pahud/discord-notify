@@ -5,7 +5,7 @@ Github Action that simply send messages to Discord.
 ## Example usage
 
 ```yaml
-uses: pahud/discord-notify@main
+uses: pahud/discord-notify@1.0.0
 with:
   webhook: ${{ secrets.WEBHOOK }}
   message: "Hello there!!"
